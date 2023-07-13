@@ -1,6 +1,7 @@
 fn main() {
     characteristics_of_object_oriented_languages();
     using_trait_objects_that_allow_for_values_of_different_types();
+    implementing_object_oriented_design_patterns();
 }
 
 fn characteristics_of_object_oriented_languages() {
@@ -104,4 +105,32 @@ fn using_trait_objects_that_allow_for_values_of_different_types() {
     // at compile time with the specific types. This means that there is no runtime performance
     // penalty for using generics. However, dynamic dispatching must be figured out at runtime and
     // so these incur a performance penalty.
+}
+
+fn implementing_object_oriented_design_patterns() {
+    //The first part of the was an example using Rust in an object oriented way. I essentially
+    // built a little library to handle a `Post`.
+    use rust_book_chapter_17::Post;
+
+    let mut post = Post::new();
+
+    post.add_text("Learning Rust is fun, when I finish I will do open source.");
+    assert_eq!("", post.content());
+
+    post.request_review();
+    assert_eq!("", post.content());
+
+    post.reject();
+    assert_eq!("", post.content());
+
+    post.request_review();
+    assert_eq!("", post.content());
+
+    post.approve();
+    assert_eq!("Learning Rust is fun, when I finish I will do open source.", post.content());
+
+    //Personally I have never felt the need to follow specific design patterns. Maybe I need to
+    // work together with people more often then to see why it is useful. But I am perfectly fine
+    // with using Rusts way of handling these things instead of following OOP.
+
 }
